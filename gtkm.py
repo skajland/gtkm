@@ -10,7 +10,7 @@ accumulator = 0
 zombie1 = Zombie((400, 400))
 
 
-def update():
+def update(): # updates
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
