@@ -11,5 +11,5 @@ while 1:
     accumulator += currentTime-lastFrame
     lastFrame = currentTime
 
-    if accumulator >= timePerFrame:
+    if accumulator >= timePerFrame: # UPDATE I RENDER
         accumulator -= timePerFrame
