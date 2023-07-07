@@ -2,7 +2,6 @@ import pygame
 
 
 class Zombie:
-    # loads the image
     zombie = pygame.image.load("images/Zombie.png")
     # gets the rect of the image
     zombie_rect = zombie.get_rect()
