@@ -1,5 +1,10 @@
+import pygame
 # GTKM GAME JAM SNOOPY AND SKAJLAND
-i = 0
 
-while 1:
+running = True
+
+while running:
     print("test")
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
