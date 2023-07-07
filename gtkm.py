@@ -1,10 +1,9 @@
 import pygame
 # GTKM GAME JAM SNOOPY AND SKAJLAND
+timePerFrame = 1000000000.
+lastFrame = pygame.time.get_ticks()
+now = lastFrame
 
-running = True
+while 1:
 
-while running:
-    print("test")
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+    print(pygame.time.get_ticks())
