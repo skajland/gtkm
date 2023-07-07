@@ -2,7 +2,7 @@ import pygame
 
 
 class Zombie:
-    zombie = pygame.image.load("images/Zombie.png")
+    zombie = pygame.image.load("res/Zombie.png")
     # gets the rect of the image
     zombie_rect = zombie.get_rect()
     start_pos = ()

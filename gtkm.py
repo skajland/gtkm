@@ -9,6 +9,7 @@ timePerFrame = 16666667
 accumulator = 0
 zombie1 = Zombie((400, 400))
 
+
 def update():
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -17,8 +18,13 @@ def update():
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 zombie1.move()
-def render(screen):
+
+
+def render():
+    screen.fill('White')
     zombie1.render(screen)
+    pygame.display.update()
+
 
 while 1:
     currentTime = time.time_ns()
@@ -28,5 +34,5 @@ while 1:
 
     if accumulator >= timePerFrame:  # UPDATE I RENDER
         update()
-        render(screen)
+        render()
         accumulator -= timePerFrame
