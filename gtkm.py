@@ -2,7 +2,7 @@
 import pygame
 import time
 lastFrame = time.time_ns()
-now = 16666667
+timePerFrame = 16666667
 accumulator = 0
 while 1:
 
@@ -11,5 +11,5 @@ while 1:
     accumulator += currentTime-lastFrame
     lastFrame = currentTime
 
-    if (accumulator >= now):
-        accumulator -= now
+    if (accumulator >= timePerFrame):
+        accumulator -= timePerFrame
