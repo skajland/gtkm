@@ -6,6 +6,7 @@ import time
 
 screen = pygame.display.set_mode((800, 800))  # Creates the window
 
+
 lastFrame = time.time_ns()
 timePerFrame = 16666667
 accumulator = 0
@@ -13,7 +14,7 @@ zombie1 = Zombie((400, 400))
 while 1:
     currentTime = time.time_ns()
 
-    accumulator += currentTime-lastFrame
+    accumulator += currentTime - lastFrame
     lastFrame = currentTime
 
     for event in pygame.event.get():
@@ -27,5 +28,6 @@ while 1:
     if accumulator >= timePerFrame:  # UPDATE I RENDER
         screen.fill('White')
         zombie1.render(screen)
+    if accumulator >= timePerFrame:  # UPDATE I RENDER
         accumulator -= timePerFrame
         pygame.display.update()
