@@ -2,7 +2,6 @@ import pygame
 
 
 class Zombie:
-    # loads the image
     zombie = pygame.image.load("images/Zombie.png")
     # gets the rect of the image
     zombie_rect = zombie.get_rect()
@@ -17,6 +16,6 @@ class Zombie:
         # Moves the zombie left
         self.zombie_rect.x -= 1
 
-    def render(self, display):
+    def render(self, screen):
         # Renders the zombie
-        display.blit(self.zombie, self.zombie_rect)
+        screen.blit(self.zombie, self.zombie_rect)
