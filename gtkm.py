@@ -1,1 +1,4 @@
 # GTKM GAME JAM SNOOPY AND SKAJLAND
+
+
+while(1)
