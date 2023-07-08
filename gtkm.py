@@ -33,11 +33,11 @@ def render():
     screen.fill('darkgray')
     i = 0
     while i < len(all_bullets):
-        print(all_bullets[i].y)
+    #    print(all_bullets[i].y)
         bullet.render(all_bullets[i],screen)
         i+=1
-
     for block in blocks:
+        print(block.block_rect)
         block.render(screen)
     turret1.render(screen)
     pygame.display.update()
