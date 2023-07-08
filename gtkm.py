@@ -1,5 +1,4 @@
 # GTKM GAME JAM SNOOPY AND SKAJLAND
-import player
 from player import Bullet
 from block import Block
 import placeblock
