@@ -11,7 +11,7 @@ screen = pygame.display.set_mode((800, 800))  # Creates the window
 lastFrame = time.time_ns()
 timePerFrame = 16666667
 accumulator = 0
-turret1 = Turret((400, 400))
+turret1 = Turret((screen.get_width() / 2, screen.get_height()))
 
 blocks = []
 
