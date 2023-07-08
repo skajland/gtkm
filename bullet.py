@@ -13,11 +13,13 @@ class Bullet:
     def ray(self,blocks ,screen):
         for i in range(5):
             screen.blit(self.bullet_img, (500, 400))
+
             for block in blocks:
-                block.collidepoint(self.bullet_rect.x * i, self.bullet_rect.y * i)
+                block.block_rect.collidepoint((self.bullet_rect.x * i, self.bullet_rect.y * i))
+                screen.blit(self.bullet_img,(self.bullet_rect.x * i, self.bullet_rect.y * i))
 
     def update(self,blocks, screen):
-        self.bullet_rect.y -= 5
+        self.bullet_rect.y -= 0
         self.ray(blocks,screen)
     def render(self, screen):
         screen.blit(self.bullet_img, self.bullet_rect)  # Renders the object
