@@ -20,7 +20,7 @@ class Bullet:
         self.bullet_rect.y -= math.cos(radians)
 
     def rotpos(self, i , rad):
-        radians = math.radians(rad)
+        radians = math.radians(rad)+math.radians(self.dir)
 
         x = self.bullet_rect.x + math.sin(radians) * 50 * i
         y = self.bullet_rect.y - math.cos(radians) * 50 * i
