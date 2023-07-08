@@ -1,4 +1,5 @@
 # GTKM GAME JAM SNOOPY AND SKAJLAND
+import asyncio
 from player import Player
 from bullet import Bullet
 from block import Block
@@ -9,9 +10,6 @@ import time
 import sys
 
 screen = pygame.display.set_mode((800, 800))  # Creates the window
-lastFrame = time.time_ns()
-timePerFrame = 16666667
-accumulator = 0
 turret1 = Turret((screen.get_width() / 2, screen.get_height()))
 
 blocks = []
@@ -49,14 +47,19 @@ def render():
     turret1.render(screen)
     pygame.display.update()
 
+async def main():
+    accumulator = 0
+    lastFrame = time.time_ns()
+    timePerFrame = 16666667
+    while 1:
+        currentTime = time.time_ns()
 
-while 1:
-    currentTime = time.time_ns()
+        accumulator += currentTime - lastFrame
+        lastFrame = currentTime
 
-    accumulator += currentTime - lastFrame
-    lastFrame = currentTime
-
-    if accumulator >= timePerFrame:  # UPDATE I RENDER
-        update()
-        render()
-        accumulator -= timePerFrame
+        if accumulator >= timePerFrame:  # UPDATE I RENDER
+            update()
+            render()
+            accumulator -= timePerFrame
+        await asyncio.sleep(0)
+asyncio.run(main())
