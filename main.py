@@ -48,9 +48,10 @@ def render():
         block.render(screen)
     player1.render(screen)
     if placeblock.endhighlight:
-        color = pygame.Color('blue')
-        color.a = 0
-        pygame.draw.rect(screen, color, placeblock.blockhighlite_rect)
+        surf = pygame.Surface((placeblock.blockhighlite_rect.w, placeblock.blockhighlite_rect.h)).convert_alpha()
+        surf.fill((23, 100, 255, 50))
+        screen.blit(surf, (placeblock.blockhighlite_rect.x, placeblock.blockhighlite_rect.y))
+
     turret1.render(screen)
     pygame.display.update()
 
