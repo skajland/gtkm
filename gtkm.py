@@ -1,5 +1,6 @@
 # GTKM GAME JAM SNOOPY AND SKAJLAND
 import player
+from block import Block
 from turret import Turret
 import pygame
 import time
