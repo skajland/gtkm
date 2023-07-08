@@ -15,4 +15,4 @@ class Turret:
         self.turret_rect.x -= 1
 
     def render(self, screen):
-        screen.blit(self.turret_rect, self.turret_rect)  # Renders the object
+        screen.blit(self.turret_img, self.turret_rect)  # Renders the object

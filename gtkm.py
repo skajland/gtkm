@@ -1,6 +1,4 @@
 # GTKM GAME JAM SNOOPY AND SKAJLAND
-import player
-from block import Block
 from turret import Turret
 import pygame
 import time
@@ -13,7 +11,6 @@ turret1 = Turret((400, 400))
 
 
 def update():
-    player.bullet.update()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -26,7 +23,6 @@ def update():
 def render():
     screen.fill('gray')
     turret1.render(screen)
-    player.bullet.render()
     pygame.display.update()
 
 
