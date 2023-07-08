@@ -3,14 +3,16 @@ import dataclasses
 import pygame
 
 
-class bullet:
+class Bullet:
     bullet_img = pygame.image.load("res/Turret.png")
-    start_pos = ()
-    def __init__(self,x,y ):
-        self.x=x
-        self.y=y
-    bullet_pos = ()
+
+    def __init__(self, x, y):
+        self.bullet_rect = self.bullet_img.get_rect()
+        self.bullet_rect.x = x
+        self.bullet_rect.y = y
+
     def update(self):
         self.y+=1
-    def render(self,screen):
-        screen.blit(self.bullet_img,(self.x, self.y))  # Renders the object
+
+    def render(self, screen):
+        screen.blit(self.bullet_img, self.bullet_rect)  # Renders the object

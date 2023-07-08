@@ -1,6 +1,6 @@
 # GTKM GAME JAM SNOOPY AND SKAJLAND
 import player
-from player import bullet
+from player import Bullet
 from block import Block
 import placeblock
 from turret import Turret
@@ -16,7 +16,7 @@ turret1 = Turret((400, 400))
 
 blocks = []
 
-all_bullets = [bullet(200, 200)]
+all_bullets = [Bullet(200, 200)]
 
 
 def update():
@@ -30,6 +30,10 @@ def update():
             if event.key == pygame.K_SPACE:
                 blocks.append(Block())
                 placeblock.placeblock(blocks[-1])
+    for block in blocks:
+        for bullet in all_bullets:
+            if bullet.bullet_rect.colliderect(block.block_rect):
+                print("collision")
 
 
 def render():
