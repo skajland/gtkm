@@ -31,6 +31,7 @@ def update():
             if event.key == pygame.K_SPACE:
                 blocks.append(Block((96, 96)))
                 placeblock.placeblock(blocks[-1])
+
     for block in blocks:
         for bullet in all_bullets:
             if bullet.bullet_rect.colliderect(block.block_rect):
