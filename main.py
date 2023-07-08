@@ -20,7 +20,7 @@ player1 = Player((screen.get_width() / 2, 0), (96, 96))
 
 def update():
     for bullet in all_bullets:
-        bullet.update()
+        bullet.update(blocks)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
