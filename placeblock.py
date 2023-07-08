@@ -3,15 +3,14 @@ import pygame
 endhighlight = False
 block = None
 
-
-def update():
-    blockhighlight()
+blockhighlite_rect = pygame.Rect(5, 5, 5, 5)
 
 
-def blockhighlight():
+def blockhighlight(screen):
     global endhighlight, block
     if endhighlight:
         placeblock()
+        blockhighlite_rect.update(block.block_rect.x, block.block_rect.y, block.block_rect.width, block.block_rect.height)
 
 
 def placeblock():

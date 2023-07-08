@@ -31,7 +31,7 @@ def update():
                     blocks.append(Block((96, 96)))
                     placeblock.block = blocks[-1]
                 placeblock.endhighlight = not placeblock.endhighlight
-    placeblock.update()
+    placeblock.blockhighlight(screen)
 
     for block in blocks:
         for bullet in all_bullets:
@@ -47,8 +47,13 @@ def render():
     for block in blocks:
         block.render(screen)
     player1.render(screen)
+    if placeblock.endhighlight:
+        color = pygame.Color('blue')
+        color.a = 0
+        pygame.draw.rect(screen, color, placeblock.blockhighlite_rect)
     turret1.render(screen)
     pygame.display.update()
+
 
 async def main():
     accumulator = 0
