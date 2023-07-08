@@ -1,5 +1,7 @@
 # GTKM GAME JAM SNOOPY AND SKAJLAND
 from player import bullet
+from block import Block
+import placeblock
 from turret import Turret
 import pygame
 import time
@@ -9,6 +11,9 @@ lastFrame = time.time_ns()
 timePerFrame = 16666667
 accumulator = 0
 turret1 = Turret((400, 400))
+
+blocks = []
+
 all_bullets = [bullet(100,100)]
 
 def update():
@@ -19,7 +24,8 @@ def update():
             sys.exit()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
-                turret1.shoot()
+                blocks.append(Block())
+                placeblock.placeblock(blocks[-1])
 
 
 def render():
@@ -29,6 +35,8 @@ def render():
         i+=1
 
     screen.fill('gray')
+    for i in blocks:
+        i.render(screen)
     turret1.render(screen)
     pygame.display.update()
 
