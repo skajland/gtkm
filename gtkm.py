@@ -1,5 +1,4 @@
 # GTKM GAME JAM SNOOPY AND SKAJLAND
-from zombie import Zombie
 import pygame
 import time
 import sys
