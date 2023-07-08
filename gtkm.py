@@ -6,7 +6,6 @@ screen = pygame.display.set_mode((800, 800))  # Creates the window
 lastFrame = time.time_ns()
 timePerFrame = 16666667
 accumulator = 0
-zombie1 = Zombie((400, 400))
 
 
 def update():
@@ -16,12 +15,10 @@ def update():
             sys.exit()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
-                zombie1.move()
-
+                print()
 
 def render():
     screen.fill('White')
-    zombie1.render(screen)
     pygame.display.update()
 
 
