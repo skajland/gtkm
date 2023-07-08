@@ -27,8 +27,11 @@ def update():
             sys.exit()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
-                blocks.append(Block((96, 96)))
-                placeblock.placeblock(blocks[-1])
+                if not placeblock.endhighlight:
+                    blocks.append(Block((96, 96)))
+                    placeblock.block = blocks[-1]
+                placeblock.endhighlight = not placeblock.endhighlight
+    placeblock.update()
 
     for block in blocks:
         for bullet in all_bullets:
