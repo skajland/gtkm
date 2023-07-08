@@ -4,15 +4,15 @@ pygame.init()
 
 class Button:
 
-    def __init__(self, what_to_say, pos, default_color, button_hovering_color, button_pressed_color, *func_arguments):
+    def __init__(self, what_to_say, pos, font_size, default_color, button_hovering_color, button_pressed_color, *func_arguments):
         self.func_arguments = func_arguments
         self.default_color = default_color
         self.button_hovering_color = button_hovering_color
         self.button_pressed_color = button_pressed_color
-        self.font = pygame.font.Font(None, 64)
+        self.font = pygame.font.Font(None, font_size)
         self.rendered_font = self.font.render(what_to_say, True, 'Black')
         self.font_rect = self.rendered_font.get_rect()
-        self.font_rect.midleft = pos
+        self.font_rect.center = pos
         self.button_state = "None"
         self.mouse_down = False
 
@@ -21,6 +21,8 @@ class Button:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if len(self.func_arguments) > 0:
                     func(self.func_arguments)
+                else:
+                    func()
                 self.button_state = "Pressed"
                 self.mouse_down = True
             if event.type == pygame.MOUSEBUTTONUP:

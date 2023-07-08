@@ -1,5 +1,6 @@
 # GTKM GAME JAM SNOOPY AND SKAJLAND
 import asyncio
+import usefull as usf
 from button import Button
 from player import Player
 from bullet import Bullet
@@ -18,59 +19,87 @@ blocks = []
 all_bullets = [Bullet(200, 800)]
 player1 = Player((screen.get_width() / 2, 0), (96, 96))
 
+start_menu = True
+
+font = pygame.font.Font(None, 96)
 
 all_blocks = (("res/Brick.png", (96, 96)), ("res/Vase.png", (19 * 3.2, 31 * 3.2)))
-button1 = Button("1", (screen.get_width() - 30, 400), (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150), 0)
-button2 = Button("2", (screen.get_width() - 30, 350), (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150), 1)
+
+start_button = Button("Play", (screen.get_width() / 2, screen.get_height() / 2), 96, (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150))
+exit_button = Button("Exit", (screen.get_width() / 2, screen.get_height() / 2 + 96), 96, (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150))
+item_button1 = Button("1", (screen.get_width() - 30, 400), 64, (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150), 0)
+item_button2 = Button("2", (screen.get_width() - 30, 350), 64, (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150), 1)
+
 
 def update():
-    screen.fill("darkgray")
-
-    for bullet in all_bullets:
-        bullet.update(blocks, screen)
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-        if placeblock.endhighlight:
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                placeblock.endhighlight = not placeblock.endhighlight
-
-        button1.collision(event, equipblock)
-        button2.collision(event, equipblock)
-
-    placeblock.blockhighlight()
-
-    for block in blocks:
+    if not start_menu:
+        screen.fill("darkgray")
         for bullet in all_bullets:
-            if bullet.bullet_rect.colliderect(block.block_rect):
-                print("collision")
+            bullet.update(blocks, screen)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if placeblock.endhighlight:
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    placeblock.endhighlight = not placeblock.endhighlight
+
+            item_button1.collision(event, equipblock)
+            item_button2.collision(event, equipblock)
+
+        placeblock.blockhighlight()
+
+        for block in blocks:
+            for bullet in all_bullets:
+                if bullet.bullet_rect.colliderect(block.block_rect):
+                    print("collision")
+    else:
+        screen.fill("darkgray")
+        for event in pygame.event.get():
+            start_button.collision(event, getoutofstartmenu)
+            exit_button.collision(event, usf.game_exit)
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+
+def getoutofstartmenu():
+    global start_menu
+    start_menu = False
 
 
 def equipblock(block_index):
-    print(block_index) # TUTAJ ____-------------______________________---------------__________________----------------
+    print(block_index)
     if not placeblock.endhighlight:
         blocks.append(Block(all_blocks[block_index[0]][0], all_blocks[block_index[0]][1]))
         placeblock.block = blocks[-1]
     placeblock.endhighlight = not placeblock.endhighlight
 
+
 def render():
-    for bullet in all_bullets:
-        bullet.render(screen)
+    if not start_menu:
+        for bullet in all_bullets:
+            bullet.render(screen)
 
-    for block in blocks:
-        block.render(screen)
+        for block in blocks:
+            block.render(screen)
 
-    player1.render(screen)
+        player1.render(screen)
 
-    button1.render(screen)
-    button2.render(screen)
-    if placeblock.endhighlight:
-        surf = pygame.Surface((placeblock.blockhighlite_rect.w, placeblock.blockhighlite_rect.h)).convert_alpha()
-        surf.fill((23, 100, 255, 50))
-        screen.blit(surf, (placeblock.blockhighlite_rect.x, placeblock.blockhighlite_rect.y))
+        item_button1.render(screen)
+        item_button2.render(screen)
+        if placeblock.endhighlight:
+            surf = pygame.Surface((placeblock.blockhighlite_rect.w, placeblock.blockhighlite_rect.h)).convert_alpha()
+            surf.fill((23, 100, 255, 50))
+            screen.blit(surf, (placeblock.blockhighlite_rect.x, placeblock.blockhighlite_rect.y))
 
-    turret1.render(screen)
+        turret1.render(screen)
+    else:
+        rendered_font = font.render("Bulletron 2023", 1, 'Black')
+        font_rect = rendered_font.get_rect()
+        font_rect.center = (screen.get_width() / 2, screen.get_height() / 2 - 300)
+        screen.blit(rendered_font, font_rect)
+        start_button.render(screen)
+        exit_button.render(screen)
     pygame.display.update()
 
 
