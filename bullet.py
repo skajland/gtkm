@@ -14,6 +14,7 @@ class Bullet:
         self.bullet_rect.x = x
         self.bullet_rect.y = y
         self.dir = 0
+        self.hashonged = 0 #has changed
     def bulletdir(self):
         radians = math.radians(self.dir)
         self.bullet_rect.x += math.sin(radians)*4
@@ -61,14 +62,18 @@ class Bullet:
 
         #self.bullet_rect.y -= 1
         if not hitF:
+            self.hashonged +=1
             return
         if not hitL:
+            self.hashonged = 0
             self.dir += 1
             return
         if not hitR:
+            self.hashonged = 0
             self.dir -= 1
             return
     def rcb(self, blocks ,screen):
+        hitF = False
         hitL = False
         hitR = False
         for i in range(2):  # ALERT RCB
@@ -80,21 +85,33 @@ class Bullet:
                 def b(o):
                     return block.block_rect.collidepoint((o))
 
+                if not b(self.rotpos2(i, 0)):
+                    hitF = True
                 if b(self.rotpos2(i, 80)):
                     hitL = True
                 if b(self.rotpos2(i, -80)):
                     hitR = True
                 #screen.blit(self.bullet_img2, (x, y))
-                #screen.blit(self.bullet_img2, (self.rotpos2(i, 20)))
+                #screen.blit(self.bullet_img2, (self.rotpos2(i, 0)))
 
+        if self.dir > 80:
+            self.dir = 80
+        elif self.dir < -80:
+            self.dir = -80
+
+        print(self.hashonged)
         if hitL:
             self.dir -= 5
-            return
-        if hitR:
+
+        elif hitR:
             self.dir += 5
-            return
 
-
+        '''elif hitF :
+            if self.dir > 0:
+                self.dir -= 1
+            elif self.dir < -0:
+                self.dir += 1
+'''
     def update(self,blocks, screen):
         self.bulletdir()
         self.ray(blocks,screen)

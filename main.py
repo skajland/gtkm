@@ -32,7 +32,7 @@ item_button3 = Button(pygame.image.load("res/wiatrak/wiatrak1.png"), (screen.get
 
 def update():
     if not start_menu:
-        screen.fill("darkgray")
+        screen.fill("black")
         for bullet in all_bullets:
             bullet.update(blocks, screen)
         for event in pygame.event.get():
