@@ -20,6 +20,8 @@ all_bullets = [bullet(200, 200)]
 
 
 def update():
+    for bullet in all_bullets:
+        bullet.update()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -32,10 +34,8 @@ def update():
 
 def render():
     screen.fill('darkgray')
-    i = 0
-    while i < len(all_bullets):
-        bullet.render(all_bullets[i], screen)
-        i += 1
+    for bullet in all_bullets:
+        bullet.render(screen)
 
     for block in blocks:
         block.render(screen)

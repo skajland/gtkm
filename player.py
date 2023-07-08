@@ -11,6 +11,6 @@ class bullet:
         self.y=y
     bullet_pos = ()
     def update(self):
-        print()
+        self.y+=1
     def render(self,screen):
         screen.blit(self.bullet_img,(self.x, self.y))  # Renders the object
