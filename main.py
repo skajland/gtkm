@@ -33,7 +33,7 @@ all_blocks = (
 
 def update():
     if not start_menu:
-        screen.fill("darkgray")
+        screen.fill("black")
         for bullet in all_bullets:
             bullet.update(blocks, screen)
         for event in pygame.event.get():
