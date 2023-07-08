@@ -14,13 +14,15 @@ turret1 = Turret((screen.get_width() / 2, screen.get_height()))
 
 blocks = []
 
-all_bullets = [Bullet(200, 200)]
+all_bullets = [Bullet(200, 800)]
 player1 = Player((screen.get_width() / 2, 0), (96, 96))
 
 
 def update():
+    screen.fill("darkgray")
+
     for bullet in all_bullets:
-        bullet.update(blocks)
+        bullet.update(blocks, screen)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -40,7 +42,6 @@ def update():
 
 
 def render():
-    screen.fill('darkgray')
     for bullet in all_bullets:
         bullet.render(screen)
 
