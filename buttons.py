@@ -23,7 +23,7 @@ def start_screen_update(event):
 
 def getoutofstartmenu():
     global start_menu
-    start_menu = False
+    usefull.start_menu = False
 
 
 def render():

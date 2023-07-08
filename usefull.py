@@ -1,5 +1,6 @@
 import pygame
 import sys
+start_menu = True
 
 
 def game_exit():

@@ -6,6 +6,7 @@ screen = pygame.display.set_mode((800, 800))  # Creates the window
 
 import asyncio
 import buttons
+import usefull
 from player import Player
 from bullet import Bullet
 from block import Block
@@ -22,7 +23,6 @@ blocks = []
 all_bullets = [Bullet(200, 800)]
 player1 = Player((screen.get_width() / 2, 0), (96, 96))
 
-start_menu = True
 
 font = pygame.font.Font(None, 96)
 
@@ -32,7 +32,7 @@ all_blocks = (
 
 
 def update():
-    if not start_menu:
+    if not usefull.start_menu:
         screen.fill("black")
         for bullet in all_bullets:
             bullet.update(blocks, screen)
@@ -69,7 +69,7 @@ def equipblock(block_index):
 
 
 def render():
-    if not start_menu:
+    if not usefull.start_menu:
         for bullet in all_bullets:
             bullet.render(screen)
 
