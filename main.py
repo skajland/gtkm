@@ -1,5 +1,6 @@
 # GTKM GAME JAM SNOOPY AND SKAJLAND
 import asyncio
+from button import Button
 from player import Player
 from bullet import Bullet
 from block import Block
@@ -17,6 +18,8 @@ blocks = []
 all_bullets = [Bullet(200, 800)]
 player1 = Player((screen.get_width() / 2, 0), (96, 96))
 
+button1 = Button("AMOGUS", (400, 400))
+
 
 def update():
     screen.fill("darkgray")
@@ -27,12 +30,15 @@ def update():
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 if not placeblock.endhighlight:
                     blocks.append(Block((96, 96)))
                     placeblock.block = blocks[-1]
                 placeblock.endhighlight = not placeblock.endhighlight
+        button1.collision(event)
+
     placeblock.blockhighlight()
 
     for block in blocks:
@@ -47,7 +53,11 @@ def render():
 
     for block in blocks:
         block.render(screen)
+
     player1.render(screen)
+
+    button1.render(screen)
+
     if placeblock.endhighlight:
         surf = pygame.Surface((placeblock.blockhighlite_rect.w, placeblock.blockhighlite_rect.h)).convert_alpha()
         surf.fill((23, 100, 255, 50))
