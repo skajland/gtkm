@@ -18,7 +18,7 @@ blocks = []
 all_bullets = [Bullet(200, 800)]
 player1 = Player((screen.get_width() / 2, 0), (96, 96))
 
-button1 = Button("AMOGUS", (400, 400))
+button1 = Button("AMOGUS", (400, 400), (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150))
 
 
 def update():
@@ -33,6 +33,7 @@ def update():
         if placeblock.endhighlight:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 placeblock.endhighlight = not placeblock.endhighlight
+
         button1.collision(event, equipblock)
 
     placeblock.blockhighlight()

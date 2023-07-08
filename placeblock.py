@@ -1,6 +1,7 @@
 import pygame
 
 endhighlight = False
+holding_shift = False
 block = None
 
 blockhighlite_rect = pygame.Rect(5, 5, 5, 5)
