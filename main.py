@@ -24,10 +24,9 @@ start_menu = True
 font = pygame.font.Font(None, 96)
 
 all_blocks = (("res/Brick.png", (96, 96)), ("res/Vase.png", (19 * 3.2, 31 * 3.2)),  ("res/wiatrak/wiatrak1.png", (19 * 3.2, 31 * 4)))
-
 start_button = Button("Play", (screen.get_width() / 2, screen.get_height() / 2), 96, (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150))
 exit_button = Button("Exit", (screen.get_width() / 2, screen.get_height() / 2 + 96), 96, (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150))
-item_button1 = Button("1", (screen.get_width() - 30, 300), 64, (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150), 0)
+item_button1 = Button(pygame.image.load("res/Brick.png"), (screen.get_width() - 30, 300), 64, (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150), 0)
 item_button2 = Button("2", (screen.get_width() - 30, 350), 64, (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150), 1)
 item_button3 = Button("3", (screen.get_width() - 30, 400), 64, (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150), 2)
 
