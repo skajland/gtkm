@@ -31,7 +31,7 @@ def update():
                     blocks.append(Block((96, 96)))
                     placeblock.block = blocks[-1]
                 placeblock.endhighlight = not placeblock.endhighlight
-    placeblock.blockhighlight(screen)
+    placeblock.blockhighlight()
 
     for block in blocks:
         for bullet in all_bullets:

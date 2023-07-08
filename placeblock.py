@@ -6,7 +6,7 @@ block = None
 blockhighlite_rect = pygame.Rect(5, 5, 5, 5)
 
 
-def blockhighlight(screen):
+def blockhighlight():
     global endhighlight, block
     if endhighlight:
         placeblock()
