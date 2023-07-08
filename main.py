@@ -19,7 +19,7 @@ all_bullets = [Bullet(200, 800)]
 player1 = Player((screen.get_width() / 2, 0), (96, 96))
 
 
-all_blocks = (("res/Brick.png", (96, 96)), ("res/Vase.png", (96, 96)))
+all_blocks = (("res/Brick.png", (96, 96)), ("res/Vase.png", (19 * 3.2, 31 * 3.2)))
 button1 = Button("1", (screen.get_width() - 30, 400), (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150), 0)
 button2 = Button("2", (screen.get_width() - 30, 350), (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150), 1)
 
