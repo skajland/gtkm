@@ -37,8 +37,8 @@ def render():
         bullet.render(all_bullets[i],screen)
         i+=1
 
-    for i in blocks:
-        i.render(screen)
+    for block in blocks:
+        block.render(screen)
     turret1.render(screen)
     pygame.display.update()
 
