@@ -1,21 +1,18 @@
 import pygame
 
 
-class Zombie:
-    zombie = pygame.image.load("res/Zombie.png")
-    # gets the rect of the image
-    zombie_rect = zombie.get_rect()
+class Turret:
+    turret_img = pygame.image.load("res/Turret.png")
+    turret_rect = turret_img.get_rect()  # gets the rect of the image
     start_pos = ()
 
     def __init__(self, start_pos):
         # start position
         self.start_pos = start_pos
-        self.zombie_rect.y, self.zombie_rect.x = start_pos
+        self.turret_rect.y, self.turret_rect.x = start_pos
 
-    def move(self):
-        # Moves the zombie left
-        self.zombie_rect.x -= 1
+    def shoot(self):
+        self.turret_rect.x -= 1
 
     def render(self, screen):
-        # Renders the zombie
-        screen.blit(self.zombie, self.zombie_rect)
+        screen.blit(self.turret_rect, self.turret_rect)  # Renders the object
