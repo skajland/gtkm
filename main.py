@@ -1,17 +1,20 @@
 # GTKM GAME JAM SNOOPY AND SKAJLAND
+import pygame
+
+pygame.init()
+screen = pygame.display.set_mode((800, 800))  # Creates the window
+
 import asyncio
-import usefull as usf
-from button import Button
+import buttons
 from player import Player
 from bullet import Bullet
 from block import Block
 from turret import Turret
 import placeblock
-import pygame
 import time
 import sys
 
-screen = pygame.display.set_mode((800, 800))  # Creates the window
+# screen = pygame.display.set_mode((800, 800))  # Creates the window
 turret1 = Turret((screen.get_width() / 2, screen.get_height()))
 
 blocks = []
@@ -23,12 +26,10 @@ start_menu = True
 
 font = pygame.font.Font(None, 96)
 
-all_blocks = (("res/Brick.png", (96, 96)), ("res/Vase.png", (19 * 3.2, 31 * 3.2)),  ("res/wiatrak/wiatrak1.png", (19 * 3.2, 31 * 4)))
-start_button = Button("Play", (screen.get_width() / 2, screen.get_height() / 2), 96, (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150))
-exit_button = Button("Exit", (screen.get_width() / 2, screen.get_height() / 2 + 96), 96, (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150))
-item_button1 = Button(pygame.image.load("res/Brick.png"), (screen.get_width() - 30, 200), 64, (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150), 0)
-item_button2 = Button(pygame.image.load("res/Vase.png"), (screen.get_width() - 30, 250), 64, (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150), 1)
-item_button3 = Button(pygame.image.load("res/wiatrak/wiatrak1.png"), (screen.get_width() - 30, 300), 64, (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150), 2)
+all_blocks = (
+    ("res/Brick.png", (96, 96)), ("res/Vase.png", (19 * 3.2, 31 * 3.2)),
+    ("res/wiatrak/wiatrak1.png", (19 * 3.2, 31 * 4)))
+
 
 def update():
     if not start_menu:
@@ -43,9 +44,7 @@ def update():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     placeblock.endhighlight = not placeblock.endhighlight
 
-            item_button1.collision(event, equipblock)
-            item_button2.collision(event, equipblock)
-            item_button3.collision(event, equipblock)
+            buttons.update(event)
 
         placeblock.blockhighlight()
 
@@ -56,16 +55,10 @@ def update():
     else:
         screen.fill("darkgray")
         for event in pygame.event.get():
-            start_button.collision(event, getoutofstartmenu)
-            exit_button.collision(event, usf.game_exit)
+            buttons.start_screen_update(event)
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-
-
-def getoutofstartmenu():
-    global start_menu
-    start_menu = False
 
 
 def equipblock(block_index):
@@ -84,10 +77,7 @@ def render():
             block.render(screen)
 
         player1.render(screen)
-
-        item_button1.render(screen)
-        item_button2.render(screen)
-        item_button3.render(screen)
+        buttons.render()
         if placeblock.endhighlight:
             surf = pygame.Surface((placeblock.blockhighlite_rect.w, placeblock.blockhighlite_rect.h)).convert_alpha()
             surf.fill((23, 100, 255, 50))
@@ -99,8 +89,7 @@ def render():
         font_rect = rendered_font.get_rect()
         font_rect.center = (screen.get_width() / 2, screen.get_height() / 2 - 300)
         screen.blit(rendered_font, font_rect)
-        start_button.render(screen)
-        exit_button.render(screen)
+        buttons.start_screen_render()
     pygame.display.update()
 
 
@@ -119,4 +108,6 @@ async def main():
             render()
             accumulator -= timePerFrame
         await asyncio.sleep(0)
+
+
 asyncio.run(main())
