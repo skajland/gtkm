@@ -2,7 +2,7 @@ import pygame
 
 
 class Player:
-    player_img = pygame.image.load("res/Zombie.png")
+    player_img = pygame.image.load("res/Dziad.png")
 
     def __init__(self, pos, scaler):
         self.player_img = pygame.transform.scale(self.player_img, scaler)

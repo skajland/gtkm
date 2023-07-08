@@ -7,7 +7,7 @@ import block
 
 
 class Bullet:
-    bullet_img = pygame.image.load("res/Bullet.png")
+    bullet_img = pygame.transform.scale(pygame.image.load("res/Bullet.png"), (7 * 3, 16 * 3))
 
     def __init__(self, x, y):
         self.bullet_rect = self.bullet_img.get_rect()
