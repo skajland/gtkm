@@ -62,13 +62,13 @@ def update():
                 pygame.quit()
                 sys.exit()
 
+
 def getoutofstartmenu():
     global start_menu
     start_menu = False
 
 
 def equipblock(block_index):
-    print(block_index)
     if not placeblock.endhighlight:
         blocks.append(Block(all_blocks[block_index[0]][0], all_blocks[block_index[0]][1]))
         placeblock.block = blocks[-1]
