@@ -1,6 +1,6 @@
 import dataclasses
 import math
-
+import random
 import pygame
 
 
@@ -11,8 +11,14 @@ class Bullet:
         self.bullet_rect = self.bullet_img.get_rect()
         self.bullet_rect.x = x
         self.bullet_rect.y = y
+        self.dir = 0
+    def bulletdir(self):
+        radians = math.radians(self.dir)
+        self.bullet_rect.x += math.sin(radians)*4
+        self.bullet_rect.y -= math.cos(radians)
+
     def rotpos(self, i , rad):
-        radians = math.radians(rad)  # MAKE COMP(INTER) TIME
+        radians = math.radians(rad)
 
         x = self.bullet_rect.x + math.sin(radians) * 50 * i
         y = self.bullet_rect.y - math.cos(radians) * 50 * i
@@ -42,17 +48,20 @@ class Bullet:
                 screen.blit(self.bullet_img,(xR,yR))
                 screen.blit(self.bullet_img,(x0,y0))
 
-        self.bullet_rect.y -= 1
+        #self.bullet_rect.y -= 1
         if not hitF:
             return
+
         if not hitL:
-            self.bullet_rect.x +=1
+            self.dir += 1
             return
         if not hitR:
-            self.bullet_rect.x -= 1
+            self.dir -= 1
             return
 
     def update(self,blocks, screen):
         self.ray(blocks,screen)
+        self.bulletdir()
+
     def render(self, screen):
         screen.blit(self.bullet_img, self.bullet_rect)  # Renders the object
