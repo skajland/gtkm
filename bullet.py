@@ -60,8 +60,8 @@ class Bullet:
             return
 
     def update(self,blocks, screen):
-        self.ray(blocks,screen)
         self.bulletdir()
+        self.ray(blocks,screen)
 
     def render(self, screen):
         screen.blit(self.bullet_img, self.bullet_rect)  # Renders the object
