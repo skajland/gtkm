@@ -1,4 +1,5 @@
 # GTKM GAME JAM SNOOPY AND SKAJLAND
+from player import bullet
 from turret import Turret
 import pygame
 import time
@@ -8,9 +9,10 @@ lastFrame = time.time_ns()
 timePerFrame = 16666667
 accumulator = 0
 turret1 = Turret((400, 400))
-
+all_bullets = [bullet(100,100)]
 
 def update():
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -21,6 +23,11 @@ def update():
 
 
 def render():
+    i = 0
+    while i < len(all_bullets):
+        bullet.render(all_bullets[i], screen)
+        i+=1
+
     screen.fill('gray')
     turret1.render(screen)
     pygame.display.update()
