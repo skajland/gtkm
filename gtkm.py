@@ -1,5 +1,5 @@
 # GTKM GAME JAM SNOOPY AND SKAJLAND
-from player import Bullet
+from bullet import Bullet
 from block import Block
 import placeblock
 from turret import Turret
