@@ -70,5 +70,5 @@ class Bullet:
         self.ray(blocks,screen)
 
     def render(self, screen):
-        rot = pygame.transform.rotate(self.bullet_img,-self.dir)
+        rot = pygame.transform.rotate(self.bullet_img,-self.dir+1)
         screen.blit(rot, (self.bullet_rect.x-12 , self.bullet_rect.y))  # Renders the object
