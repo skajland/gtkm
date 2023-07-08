@@ -7,6 +7,7 @@ from turret import Turret
 import pygame
 import time
 import sys
+
 screen = pygame.display.set_mode((800, 800))  # Creates the window
 lastFrame = time.time_ns()
 timePerFrame = 16666667
@@ -15,10 +16,10 @@ turret1 = Turret((400, 400))
 
 blocks = []
 
-all_bullets = [bullet(200,200)]
+all_bullets = [bullet(200, 200)]
+
 
 def update():
-
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -33,12 +34,12 @@ def render():
     screen.fill('darkgray')
     i = 0
     while i < len(all_bullets):
-    #    print(all_bullets[i].y)
-        bullet.render(all_bullets[i],screen)
-        i+=1
+        bullet.render(all_bullets[i], screen)
+        i += 1
+
     for block in blocks:
-        print(block.block_rect)
         block.render(screen)
+
     turret1.render(screen)
     pygame.display.update()
 
