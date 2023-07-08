@@ -12,10 +12,10 @@ class Button:
         self.font_rect.center = pos
         self.fader = False
 
-    def collision(self, event):
+    def collision(self, event, func):
         if self.font_rect.collidepoint(pygame.mouse.get_pos()):
             if event.type == pygame.MOUSEBUTTONDOWN:
-                print("PRESSED")
+                func()
             self.fader = True
         else:
             self.fader = False

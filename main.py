@@ -30,14 +30,10 @@ def update():
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE:
-                if not placeblock.endhighlight:
-                    blocks.append(Block((96, 96)))
-                    placeblock.block = blocks[-1]
+        if placeblock.endhighlight:
+            if event.type == pygame.MOUSEBUTTONDOWN:
                 placeblock.endhighlight = not placeblock.endhighlight
-        button1.collision(event)
+        button1.collision(event, equipblock)
 
     placeblock.blockhighlight()
 
@@ -46,6 +42,12 @@ def update():
             if bullet.bullet_rect.colliderect(block.block_rect):
                 print("collision")
 
+
+def equipblock():
+    if not placeblock.endhighlight:
+        blocks.append(Block((96, 96)))
+        placeblock.block = blocks[-1]
+    placeblock.endhighlight = not placeblock.endhighlight
 
 def render():
     for bullet in all_bullets:
