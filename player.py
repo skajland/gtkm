@@ -12,7 +12,7 @@ class Bullet:
         self.bullet_rect.y = y
 
     def update(self):
-        self.y+=1
+        self.bullet_rect.y += 1
 
     def render(self, screen):
         screen.blit(self.bullet_img, self.bullet_rect)  # Renders the object
