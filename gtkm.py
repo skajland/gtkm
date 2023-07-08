@@ -15,7 +15,7 @@ turret1 = Turret((400, 400))
 
 blocks = []
 
-all_bullets = [bullet(100,100)]
+all_bullets = [bullet(200,200)]
 
 def update():
 
@@ -30,12 +30,13 @@ def update():
 
 
 def render():
+    screen.fill('darkgray')
     i = 0
     while i < len(all_bullets):
+        print(all_bullets[i].y)
         bullet.render(all_bullets[i],screen)
         i+=1
 
-    screen.fill('gray')
     for i in blocks:
         i.render(screen)
     turret1.render(screen)
