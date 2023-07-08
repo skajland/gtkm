@@ -18,8 +18,10 @@ blocks = []
 all_bullets = [Bullet(200, 800)]
 player1 = Player((screen.get_width() / 2, 0), (96, 96))
 
-button1 = Button("AMOGUS", (400, 400), (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150))
 
+all_blocks = (("res/Brick.png", (96, 96)), ("res/Vase.png", (96, 96)))
+button1 = Button("1", (screen.get_width() - 30, 400), (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150), 0)
+button2 = Button("2", (screen.get_width() - 30, 350), (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150), 0)
 
 def update():
     screen.fill("darkgray")
@@ -35,6 +37,7 @@ def update():
                 placeblock.endhighlight = not placeblock.endhighlight
 
         button1.collision(event, equipblock)
+        button2.collision(event, equipblock)
 
     placeblock.blockhighlight()
 
@@ -44,9 +47,10 @@ def update():
                 print("collision")
 
 
-def equipblock():
+def equipblock(block_index):
+    print(block_index) # TUTAJ ____-------------______________________---------------__________________----------------
     if not placeblock.endhighlight:
-        blocks.append(Block((96, 96)))
+        blocks.append(Block(all_blocks[block_index][0], all_blocks[block_index][1]))
         placeblock.block = blocks[-1]
     placeblock.endhighlight = not placeblock.endhighlight
 
@@ -60,7 +64,7 @@ def render():
     player1.render(screen)
 
     button1.render(screen)
-
+    button2.render(screen)
     if placeblock.endhighlight:
         surf = pygame.Surface((placeblock.blockhighlite_rect.w, placeblock.blockhighlite_rect.h)).convert_alpha()
         surf.fill((23, 100, 255, 50))
