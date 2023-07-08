@@ -50,9 +50,9 @@ class Bullet:
                 if b(self.rotpos(i, -20)) and b(self.rotpos(i, -10)):
                     hitR = True
 
-                screen.blit(self.bullet_img,(xL,yL))
-                screen.blit(self.bullet_img,(xR,yR))
-                screen.blit(self.bullet_img,(x0,y0))
+                #screen.blit(self.bullet_img,(xL,yL))
+                #screen.blit(self.bullet_img,(xR,yR))
+                #screen.blit(self.bullet_img,(x0,y0))
 
         #self.bullet_rect.y -= 1
         if not hitF:
