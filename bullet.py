@@ -1,4 +1,5 @@
 import dataclasses
+import math
 
 import pygame
 
@@ -12,14 +13,18 @@ class Bullet:
         self.bullet_rect.y = y
     def ray(self,blocks ,screen):
         for i in range(5):
-            screen.blit(self.bullet_img, (500, 400))
+            radians = math.radians(20)#MAKE COMP(INTER) TIME
+
+            x = self.bullet_rect.x + math.sin(radians) *50 * i
+            y = self.bullet_rect.y - math.cos(radians) *50 * i
 
             for block in blocks:
-                block.block_rect.collidepoint((self.bullet_rect.x * i, self.bullet_rect.y * i))
-                screen.blit(self.bullet_img,(self.bullet_rect.x * i, self.bullet_rect.y * i))
+                if block.block_rect.collidepoint((x, y)):
+                    print("COL RAY")
+                screen.blit(self.bullet_img,(x,y))
 
     def update(self,blocks, screen):
-        self.bullet_rect.y -= 0
+        self.bullet_rect.y -= 1
         self.ray(blocks,screen)
     def render(self, screen):
         screen.blit(self.bullet_img, self.bullet_rect)  # Renders the object
