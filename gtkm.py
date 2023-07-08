@@ -1,4 +1,5 @@
 # GTKM GAME JAM SNOOPY AND SKAJLAND
+import player
 from player import bullet
 from block import Block
 import placeblock
@@ -31,7 +32,7 @@ def update():
 def render():
     i = 0
     while i < len(all_bullets):
-        bullet.render(all_bullets[i], screen)
+        bullet.render(all_bullets[i],screen)
         i+=1
 
     screen.fill('gray')
