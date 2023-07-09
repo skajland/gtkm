@@ -10,6 +10,7 @@ all_blocks = (
 
 blocks = [Block(all_blocks[0][0], all_blocks[0][1])]
 
+
 def game_exit():
     pygame.quit()
     sys.exit()
