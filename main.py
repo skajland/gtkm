@@ -34,14 +34,13 @@ shadow = "1"
 # ground = pygame.image.load("res/ground.png")
 
 screen.fill("darkgray")
-waves1 = 0
+
 def update():
-    global waves1
     if usefull.game_state == "Playing":
         if not len(usefull.all_bullets):
-            for i in range(waves1):
+            for i in range(usefull.waves1):
                 usefull.all_bullets.append(Bullet(400, 800))
-            waves1 +=1
+            usefull.waves1 += 1
 
 
         for bullet in usefull.all_bullets:
@@ -54,10 +53,12 @@ def update():
             placeblock.update(event)
             buttons.update(event)
         placeblock.blockhighlight()
-
         for block in usefull.blocks:
+            if block.health <= 0:
+                usefull.blocks.remove(block)
             for bullet in usefull.all_bullets:
                 if bullet.bullet_rect.colliderect(block.block_rect):
+                    block.health -= 25
                     pygame.mixer.Sound("res/odbicie_comp.wav").play()
                     usefull.all_bullets.remove(bullet)
         for bullet in usefull.all_bullets:
@@ -101,7 +102,7 @@ def render():
         screen.blit(menu, menu_rect)
         buttons.render()
         turret.render()
-        t = my_font.render("wave " + str(waves1), False, (0, 0, 0))
+        t = my_font.render("wave " + str(usefull.waves1), False, (0, 0, 0))
         screen.blit(t, (10, 10))
     elif usefull.game_state == "Menu":
         screens.Menu.render(screen, font)
