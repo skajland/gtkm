@@ -4,6 +4,7 @@ import random
 import pygame
 
 import block
+import usefull
 
 
 class Bullet:
@@ -15,6 +16,8 @@ class Bullet:
         self.bullet_rect.y = y
         self.dir = random.randint(-30,30)
         self.hashonged = 0 #has changed
+    def dell(self):
+        usefull.all_bullets.remove(self)
     def bulletdir(self):
         radians = math.radians(self.dir)
         self.bullet_rect.x += math.sin(radians)*4
