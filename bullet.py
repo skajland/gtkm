@@ -11,9 +11,9 @@ class Bullet:
     bullet_img2 = pygame.image.load("res/Bullet.png")
     def __init__(self, x, y):
         self.bullet_rect = self.bullet_img.get_rect()
-        self.bullet_rect.x = x
+        self.bullet_rect.x = random.randint(0,800)
         self.bullet_rect.y = y
-        self.dir = 0
+        self.dir = random.randint(-30,30)
         self.hashonged = 0 #has changed
     def bulletdir(self):
         radians = math.radians(self.dir)
@@ -64,8 +64,8 @@ class Bullet:
         if not hitF:
             self.hashonged +=1
             return
-        print(random.random)
-        if not hitL:
+        print(random.randint(1,2))
+        if random.randint(0,1) and not hitL:
             self.hashonged = 0
             self.dir += 1
             return

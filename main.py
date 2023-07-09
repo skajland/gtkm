@@ -33,9 +33,15 @@ shadow = "1"
 # ground = pygame.image.load("res/ground.png")
 
 screen.fill("darkgray")
-
+waves = 0
 def update():
+    global waves
     if usefull.game_state == "Playing":
+        if not len(usefull.all_bullets):
+            for i in range(waves):
+                usefull.all_bullets.append(Bullet(400, 800))
+            waves +=1
+
         for bullet in usefull.all_bullets:
             bullet.update(usefull.blocks, screen)
 
