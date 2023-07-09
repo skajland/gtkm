@@ -11,7 +11,7 @@ import turret
 import placeblock
 import time
 import sys
-menu = pygame.mixer.music.load("res/menu_comp.wav")
+menu1 = pygame.mixer.music.load("res/menu_comp.wav")
 pygame.mixer.music.play(-1)
 pygame.init()
 
@@ -68,9 +68,7 @@ def equipblock(block_index):
 
 
 def render():
-    for i in range(20):
-        for x in range(20):
-            screen.blit(ground,(32*i,32*x))
+    #screen.blit(ground,(32,32))
 
     if usefull.game_state == "Playing":
         for bullet in all_bullets:
