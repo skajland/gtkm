@@ -27,9 +27,15 @@ def game_exit():
 
 
 def play_again(state):
-    global game_state, waves1
+    global game_state, waves1, blocks
     waves1 = 0
     waves.coins = waves.coins_default
     all_bullets.clear()
     blocks.clear()
+    blocks = [Block(all_blocks[0][0], (100, 912), all_blocks[0][2]),
+              Block(all_blocks[0][0], (200, 912), all_blocks[0][2])]
+    blocks[0].health = 999999
+    blocks[1].health = 999999
+    blocks[0].block_rect.x = -100
+    blocks[1].block_rect.x = +850
     game_state = state[0]
