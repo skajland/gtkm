@@ -20,7 +20,7 @@ buttons.setup_buttons()
 turret.setup()
 player.setup()
 
-all_bullets = [Bullet(200, 800)]
+usefull.all_bullets = [Bullet(200, 800)]
 
 font = pygame.font.Font(None, 96)
 
@@ -34,7 +34,7 @@ menu_rect.midright = (screen.get_width(), screen.get_height() / 2)
 def update():
     if usefull.game_state == "Playing":
         screen.fill("darkgray")
-        for bullet in all_bullets:
+        for bullet in usefull.all_bullets:
             bullet.update(usefull.blocks, screen)
 
         for event in pygame.event.get():
@@ -44,18 +44,18 @@ def update():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     print("summon")
-                    all_bullets.append(Bullet(400, 800))
+                    usefull.all_bullets.append(Bullet(400, 800))
             placeblock.update(event)
             buttons.update(event)
 
         placeblock.blockhighlight()
 
         for block in usefull.blocks:
-            for bullet in all_bullets:
+            for bullet in usefull.all_bullets:
                 if bullet.bullet_rect.colliderect(block.block_rect):
                     pygame.mixer.Sound("res/odbicie_comp.wav").play()
-                    all_bullets.remove(bullet)
-        for bullet in all_bullets:
+                    usefull.all_bullets.remove(bullet)
+        for bullet in usefull.all_bullets:
             if bullet.bullet_rect.colliderect(player.player_rect):
                 usefull.game_state = "Losing Screen"
     elif usefull.game_state == "Menu":
@@ -81,7 +81,7 @@ def render():
             surf.fill((150, 50, 50, 50))  # Make Red
             screen.blit(surf, (0, 1*i*650))
 
-        for bullet in all_bullets:
+        for bullet in usefull.all_bullets:
             bullet.render(screen)
 
         for block in usefull.blocks:
