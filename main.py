@@ -11,6 +11,7 @@ import turret
 import placeblock
 import time
 import sys
+import waves
 menu1 = pygame.mixer.music.load("res/menu_comp.wav")
 pygame.mixer.music.play(-1)
 pygame.init()
@@ -55,7 +56,6 @@ def update():
                     usefull.all_bullets.append(Bullet(400, 800))
             placeblock.update(event)
             buttons.update(event)
-
         placeblock.blockhighlight()
 
         for block in usefull.blocks:
@@ -83,15 +83,13 @@ screen.fill("darkgray")
 my_font = pygame.font.SysFont('Comic Sans MS', 30)
 def render():
     global shadow
-    t = my_font.render("level "+str(shadow),False,(0,0,0))
-    screen.blit(t,(200,200))
     #screen.blit(ground,(32,32))
     screen.fill("darkgray")
 
     if usefull.game_state == "Playing":
         for i in range(2):
             surf = pygame.Surface((912, 300)).convert_alpha()
-            surf.fill((150, 50, 50, 50))  # Make Red
+            surf.fill((125, 60, 60, 50))  # Make Red
             screen.blit(surf, (0, 1*i*650))
 
         for bullet in usefull.all_bullets:
@@ -99,12 +97,14 @@ def render():
 
         for block in usefull.blocks:
             block.render(screen)
-
+        waves.render(screen)
         player.render()
         placeblock.render(screen)
         screen.blit(menu, menu_rect)
         buttons.render()
         turret.render()
+        t = my_font.render("level " + str(shadow), False, (0, 0, 0))
+        screen.blit(t, (200, 200))
     elif usefull.game_state == "Menu":
         screens.Menu.render(screen, font)
     elif usefull.game_state == "Losing Screen":
