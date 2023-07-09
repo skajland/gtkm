@@ -45,7 +45,10 @@ def update():
         for block in usefull.blocks:
             for bullet in all_bullets:
                 if bullet.bullet_rect.colliderect(block.block_rect):
-                    usefull.game_state = "Losing Screen"
+                    all_bullets.remove(bullet)
+        for bullet in all_bullets:
+            if bullet.bullet_rect.colliderect(player.player_rect):
+                usefull.game_state = "Losing Screen"
     elif usefull.game_state == "Menu":
         screens.Menu.menu(screen)
     elif usefull.game_state == "Losing Screen":
