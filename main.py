@@ -72,13 +72,6 @@ def update():
         screens.LosingScreen.menu(screen)
 
 
-def equipblock(block_index):
-    if not placeblock.endhighlight:
-        usefull.blocks.append(Block(usefull.all_blocks[block_index[0]][0], usefull.all_blocks[block_index[0]][1]))
-        placeblock.block = usefull.blocks[-1]
-    placeblock.endhighlight = not placeblock.endhighlight
-
-
 screen.fill("darkgray")
 my_font = pygame.font.SysFont('Comic Sans MS', 30)
 def render():
@@ -103,8 +96,8 @@ def render():
         screen.blit(menu, menu_rect)
         buttons.render()
         turret.render()
-        t = my_font.render("level " + str(shadow), False, (0, 0, 0))
-        screen.blit(t, (200, 200))
+        t = my_font.render("wave " + str(shadow), False, (0, 0, 0))
+        screen.blit(t, (10, 10))
     elif usefull.game_state == "Menu":
         screens.Menu.render(screen, font)
     elif usefull.game_state == "Losing Screen":
