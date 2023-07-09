@@ -24,9 +24,9 @@ def setup_buttons():
     exit_button = Button("Exit", (screen.get_width() / 2, screen.get_height() / 2 + 96), 96, (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150))
     item_button1 = Button(pygame.transform.scale(pygame.image.load("res/Brick.png"), (52, 52)), (screen.get_width() - 60, 282), 64, (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150), 0)
     item_button2 = Button(pygame.transform.scale(pygame.image.load("res/Vase.png"), (20 * 2, 32 * 2)), (screen.get_width() - 60, 378), 64, (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150), 1)
-    item_button3 = Button(pygame.transform.scale(pygame.image.load("res/wiatrak/wiatrak1.png"), (64, 64)), (screen.get_width() - 60, 474), 64, (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150), 2)
+    item_button3 = Button(pygame.transform.scale(pygame.image.load("res/wiatrak/wiatrak1.png"), (48, 64)), (screen.get_width() - 60, 474), 64, (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150), 2)
     item_button4 = Button(pygame.transform.scale(pygame.image.load("res/barrel.png"), (64, 64)), (screen.get_width() - 60, 570), 64, (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150), 3)
-    item_button5 = Button(pygame.transform.scale(pygame.image.load("res/Apple.png"), (64, 64)), (screen.get_width() - 60, 570 + 96), 64, (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150), 4)
+    item_button5 = Button(pygame.transform.scale(pygame.image.load("res/Apple.png"), (54, 64)), (screen.get_width() - 60, 570 + 96), 64, (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150), 4)
 
 def update(event):
     item_button1.collision(event, placeblock.equipblock)

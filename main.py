@@ -41,7 +41,7 @@ def update():
             for i in range(usefull.waves1):
                 usefull.all_bullets.append(Bullet(400, 800))
             usefull.waves1 += 1
-            waves.coins += 40
+            waves.coins += 50
 
 
         for bullet in usefull.all_bullets:
