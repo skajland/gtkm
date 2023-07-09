@@ -41,7 +41,7 @@ def update():
             for i in range(usefull.waves1):
                 usefull.all_bullets.append(Bullet(400, 800))
             usefull.waves1 += 1
-            waves.coins += 50
+            waves.coins += 40
 
 
         for bullet in usefull.all_bullets:
@@ -55,9 +55,9 @@ def update():
             buttons.update(event)
         placeblock.blockhighlight()
         for block in usefull.blocks:
-            if -100 <= block.health <= 0:
+            if -99999 <= block.health <= 0:
                 usefull.blocks.remove(block)
-            if block.health == -999:
+            if block.health == -999999:
                 continue
             for bullet in usefull.all_bullets:
                 if bullet.bullet_rect.colliderect(block.block_rect):

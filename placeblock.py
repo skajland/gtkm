@@ -1,5 +1,4 @@
 import pygame
-
 import player
 import turret
 import usefull
@@ -18,6 +17,7 @@ def blockhighlight():
     if endhighlight:
         placeblock()
         blockhighlite_rect.update(block.block_rect.x, block.block_rect.y, block.block_rect.width, block.block_rect.height)
+
         for block_checker in usefull.blocks:
             if not block_checker == usefull.blocks[-1]:
                 if block_checker.block_rect.colliderect(blockhighlite_rect):
@@ -28,6 +28,10 @@ def blockhighlight():
             if blockhighlite_rect.top >= player.player_rect.bottom + 100 and blockhighlite_rect.bottom + 100 <= turret.turret_rect.top:
                 can_be_placed = True
             else:
+                can_be_placed = False
+
+        for bullet in usefull.all_bullets:
+            if bullet.bullet_rect.colliderect(blockhighlite_rect):
                 can_be_placed = False
 
 
@@ -63,7 +67,7 @@ def equipblock(block_index):
             waves.coins -= usefull.all_blocks[block_index[0]][3]
             block_to_add = Block(usefull.all_blocks[block_index[0]][0], usefull.all_blocks[block_index[0]][1], usefull.all_blocks[block_index[0]][2])
             usefull.blocks.append(Block(usefull.all_blocks[block_index[0]][0], usefull.all_blocks[block_index[0]][1], usefull.all_blocks[block_index[0]][2]))
-            usefull.blocks[-1].health = -999
+            usefull.blocks[-1].health = -999999
             block = usefull.blocks[-1]
         endhighlight = True
     return usefull.blocks

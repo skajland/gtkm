@@ -6,12 +6,13 @@ import pygame
 import block
 import usefull
 
+bullet_img = pygame.transform.scale(pygame.image.load("res/Bullet.png"), (7 * 3, 16 * 3))
+bullet_img2 = pygame.image.load("res/Bullet.png")
+
 
 class Bullet:
-    bullet_img = pygame.transform.scale(pygame.image.load("res/Bullet.png"), (7 * 3, 16 * 3))
-    bullet_img2 = pygame.image.load("res/Bullet.png")
     def __init__(self, x, y):
-        self.bullet_rect = self.bullet_img.get_rect()
+        self.bullet_rect = bullet_img.get_rect()
         self.bullet_rect.x = random.randint(0,800)
         self.bullet_rect.y = y
         self.dir = random.randint(-30,30)
@@ -49,7 +50,7 @@ class Bullet:
 
 
             for block in blocks:
-                if block.health == -999:
+                if block.health == -999999:
                     continue
                 def b(o):
                     return block.block_rect.collidepoint(o)
@@ -85,7 +86,7 @@ class Bullet:
 
 
             for block in blocks:
-                if block.health == -999:
+                if block.health == -999999:
                     continue
                 x, y = self.rotpos2(i, 20)
 
@@ -123,19 +124,12 @@ class Bullet:
             elif self.dir < -0:
                 self.dir += 1
 '''
-    def fan(self,blocks):
-        for block in blocks:
-            if block.block_rect.width == 60:
-                if self.bullet_rect.x > block.block_rect.x:
-                    print("asfcda")
-
 
     def update(self,blocks, screen):
         self.bulletdir()
         self.ray(blocks,screen)
         self.rcb(blocks,screen)
-        self.fan(blocks)
 
     def render(self, screen):
-        rot = pygame.transform.rotate(self.bullet_img,-self.dir+3)
+        rot = pygame.transform.rotate(bullet_img,-self.dir+3)
         screen.blit(rot, (self.bullet_rect.x-12 , self.bullet_rect.y))  # Renders the object
