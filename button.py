@@ -26,10 +26,17 @@ class Button:
     def collision(self, event, func):
         if not self.isimage:
             if self.font_rect.collidepoint(pygame.mouse.get_pos()):
+                self.button_state = "Hovering"
                 self.collision_checker(event, func)
+            else:
+                self.button_state = "None"
+
         else:
             if self.img_rect.collidepoint(pygame.mouse.get_pos()):
+                self.button_state = "Hovering"
                 self.collision_checker(event, func)
+            else:
+                self.button_state = "None"
 
     def collision_checker(self, event, func):
         if event.type == pygame.MOUSEBUTTONDOWN:
@@ -42,10 +49,7 @@ class Button:
 
         if event.type == pygame.MOUSEBUTTONUP:
             self.mouse_down = False
-        if not self.mouse_down:
-            self.button_state = "Hovering"
-        else:
-            self.button_state = "None"
+
 
     def render(self, screen):
 

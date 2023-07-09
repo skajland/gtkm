@@ -18,37 +18,28 @@ import sys
 # screen = pygame.display.set_mode((800, 800))  # Creates the window
 turret1 = Turret((screen.get_width() / 2, screen.get_height()))
 
-blocks = []
-
 all_bullets = [Bullet(200, 800)]
 player1 = Player((screen.get_width() / 2, 0), (96, 96))
 
 
 font = pygame.font.Font(None, 96)
 
-all_blocks = (
-    ("res/Brick.png", (96, 96)), ("res/Vase.png", (19 * 3.2, 31 * 3.2)),
-    ("res/wiatrak/wiatrak1.png", (19 * 3.2, 31 * 4)))
-
 
 def update():
     if not usefull.start_menu:
-        screen.fill("black")
+        screen.fill("darkgray")
         for bullet in all_bullets:
-            bullet.update(blocks, screen)
+            bullet.update(usefull.blocks, screen)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            if placeblock.endhighlight:
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    placeblock.endhighlight = not placeblock.endhighlight
-
+            placeblock.update(event)
             buttons.update(event)
 
         placeblock.blockhighlight()
 
-        for block in blocks:
+        for block in usefull.blocks:
             for bullet in all_bullets:
                 if bullet.bullet_rect.colliderect(block.block_rect):
                     print("collision")
@@ -63,8 +54,8 @@ def update():
 
 def equipblock(block_index):
     if not placeblock.endhighlight:
-        blocks.append(Block(all_blocks[block_index[0]][0], all_blocks[block_index[0]][1]))
-        placeblock.block = blocks[-1]
+        usefull.blocks.append(Block(usefull.all_blocks[block_index[0]][0], usefull.all_blocks[block_index[0]][1]))
+        placeblock.block = usefull.blocks[-1]
     placeblock.endhighlight = not placeblock.endhighlight
 
 
@@ -73,15 +64,12 @@ def render():
         for bullet in all_bullets:
             bullet.render(screen)
 
-        for block in blocks:
+        for block in usefull.blocks:
             block.render(screen)
 
         player1.render(screen)
         buttons.render()
-        if placeblock.endhighlight:
-            surf = pygame.Surface((placeblock.blockhighlite_rect.w, placeblock.blockhighlite_rect.h)).convert_alpha()
-            surf.fill((23, 100, 255, 50))
-            screen.blit(surf, (placeblock.blockhighlite_rect.x, placeblock.blockhighlite_rect.y))
+        placeblock.render(screen)
 
         turret1.render(screen)
     else:

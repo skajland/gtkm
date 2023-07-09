@@ -99,7 +99,6 @@ class Bullet:
         elif self.dir < -80:
             self.dir = -80
 
-        print(self.hashonged)
         if hitL:
             self.dir -= 5
 
