@@ -28,12 +28,14 @@ menu = pygame.transform.scale(pygame.image.load("res/Menu.png"), (24 * 6, 96 * 6
 menu_rect = menu.get_rect()
 menu_rect.midright = (screen.get_width(), screen.get_height() / 2)
 
+shadow = 0
+
 # ground = pygame.image.load("res/ground.png")
 
+screen.fill("darkgray")
 
 def update():
     if usefull.game_state == "Playing":
-        screen.fill("darkgray")
         for bullet in usefull.all_bullets:
             bullet.update(usefull.blocks, screen)
 
@@ -71,9 +73,14 @@ def equipblock(block_index):
     placeblock.endhighlight = not placeblock.endhighlight
 
 
-def render():
+screen.fill("darkgray")
+my_font = pygame.font.SysFont('Comic Sans MS', 30)
+def render(shadow1):
+    global shadow
+    t = my_font.render("level "+str(shadow),False,(0,0,0))
+    screen.blit(t,(200,200))
     #screen.blit(ground,(32,32))
-
+    screen.fill("darkgray")
 
     if usefull.game_state == "Playing":
         for i in range(2):
@@ -96,6 +103,7 @@ def render():
         screens.Menu.render(screen, font)
     elif usefull.game_state == "Losing Screen":
         screens.LosingScreen.render(screen, font)
+
     pygame.display.update()
 
 
@@ -111,7 +119,7 @@ async def main():
 
         if accumulator >= timePerFrame:  # UPDATE I RENDER
             update()
-            render()
+            render(shadow)
             accumulator -= timePerFrame
         await asyncio.sleep(0)
 
