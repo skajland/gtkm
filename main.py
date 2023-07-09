@@ -44,6 +44,7 @@ def update():
             usefull.waves1 += 1
             waves.coins += 50
 
+
         for bullet in usefull.all_bullets:
             bullet.update(usefull.blocks, screen)
 
@@ -91,6 +92,8 @@ def render():
             bullet.render(screen)
 
         for block in usefull.blocks:
+            if block.block_rect.width == 60:
+                block.renderfan(screen)
             block.render(screen)
         surf = pygame.Surface((90, 912))
 
