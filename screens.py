@@ -10,18 +10,18 @@ class LosingScreen:
         screen.fill("darkgray")
         for event in pygame.event.get():
             buttons.play_again.collision(event, usefull.play_again)
-            buttons.exit_button.collision(event, usefull.game_exit)
+            buttons.menu_button.collision(event, usefull.play_again)
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
 
     @staticmethod
     def render(screen, font):
-        rendered_font = font.render("You Lose", 1, 'Black')
+        rendered_font = font.render("You Lost", 1, 'Black')
         font_rect = rendered_font.get_rect()
         font_rect.center = (screen.get_width() / 2, screen.get_height() / 2 - 300)
         buttons.play_again.render(screen)
-        buttons.exit_button.render(screen)
+        buttons.menu_button.render(screen)
         screen.blit(rendered_font, font_rect)
 
 

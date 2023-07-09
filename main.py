@@ -11,7 +11,9 @@ import turret
 import placeblock
 import time
 import sys
+
 menu1 = pygame.mixer.music.load("res/menu_comp.wav")
+
 pygame.mixer.music.play(-1)
 pygame.init()
 
@@ -24,13 +26,17 @@ all_bullets = [Bullet(200, 800)]
 
 font = pygame.font.Font(None, 96)
 
-ground = pygame.image.load("res/ground.png")
+menu = pygame.transform.scale(pygame.image.load("res/Menu.png"), (24 * 6, 96 * 6))
+menu_rect = menu.get_rect()
+menu_rect.midright = (screen.get_width(), screen.get_height() / 2)
+
+# ground = pygame.image.load("res/ground.png")
 
 
 def update():
     if usefull.game_state == "Playing":
         screen.fill("darkgray")
-        for bullet in all_bullets:
+        for bullet in usefull.all_bullets:
             bullet.update(usefull.blocks, screen)
 
         for event in pygame.event.get():
@@ -40,20 +46,26 @@ def update():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     print("summon")
-                    all_bullets.append(Bullet(400, 800))
+                    usefull.all_bullets.append(Bullet(400, 800))
             placeblock.update(event)
             buttons.update(event)
 
         placeblock.blockhighlight()
 
         for block in usefull.blocks:
-            for bullet in all_bullets:
+            for bullet in usefull.all_bullets:
                 if bullet.bullet_rect.colliderect(block.block_rect):
                     pygame.mixer.Sound("res/odbicie_comp.wav").play()
-                    all_bullets.remove(bullet)
-        for bullet in all_bullets:
+                    block.health -= 25
+                    usefull.all_bullets.remove(bullet)
+
+        for bullet in usefull.all_bullets:
             if bullet.bullet_rect.colliderect(player.player_rect):
                 usefull.game_state = "Losing Screen"
+
+        for block in usefull.blocks:
+            if block.health <= 0:
+                usefull.blocks.remove(block)
     elif usefull.game_state == "Menu":
         screens.Menu.menu(screen)
     elif usefull.game_state == "Losing Screen":
@@ -72,21 +84,25 @@ def render():
 
 
     if usefull.game_state == "Playing":
-        for bullet in all_bullets:
+
+        for bullet in usefull.all_bullets:
             bullet.render(screen)
 
         for block in usefull.blocks:
             block.render(screen)
 
         player.render()
-        buttons.render()
         placeblock.render(screen)
+        screen.blit(menu, menu_rect)
+        buttons.render()
 
         turret.render()
     elif usefull.game_state == "Menu":
         screens.Menu.render(screen, font)
     elif usefull.game_state == "Losing Screen":
         screens.LosingScreen.render(screen, font)
+
+
     pygame.display.update()
 
 

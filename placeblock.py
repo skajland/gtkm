@@ -57,7 +57,7 @@ def placeblock():
 def equipblock(block_index):
     global endhighlight, block
     if not endhighlight:
-        usefull.blocks.append(Block(usefull.all_blocks[block_index[0]][0], usefull.all_blocks[block_index[0]][1]))
+        usefull.blocks.append(Block(usefull.all_blocks[block_index[0]][0], usefull.all_blocks[block_index[0]][1], usefull.all_blocks[block_index[0]][2]))
         block = usefull.blocks[-1]
-    endhighlight = not endhighlight
+    endhighlight = True
     return usefull.blocks
