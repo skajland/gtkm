@@ -91,8 +91,6 @@ def render():
             bullet.render(screen)
 
         for block in usefull.blocks:
-            if block.block_rect.width == 60:
-                block.renderfan(screen)
             block.render(screen)
         surf = pygame.Surface((90, 912))
 
