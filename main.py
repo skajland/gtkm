@@ -86,6 +86,12 @@ def render():
     if usefull.game_state == "Playing":
 
         for bullet in usefull.all_bullets:
+        for i in range(2):
+            surf = pygame.Surface((912, 300)).convert_alpha()
+            surf.fill((150, 50, 50, 50))  # Make Red
+            screen.blit(surf, (0, 1*i*650))
+
+        for bullet in all_bullets:
             bullet.render(screen)
 
         for block in usefull.blocks:
