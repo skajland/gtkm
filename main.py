@@ -36,7 +36,6 @@ def update():
                 if event.key == pygame.K_SPACE:
                     print("summon")
                     all_bullets.append(Bullet(400, 800))
-
             placeblock.update(event)
             buttons.update(event)
 

@@ -12,7 +12,7 @@ screen = None
 def setup():
     global screen
     screen = pygame.display.get_surface()
-    player_rect.centerx, player_rect.y = (screen.get_width() / 2, 40)
+    player_rect.centerx, player_rect.y = (screen.get_width() / 2, 30)
 
 
 def render():
