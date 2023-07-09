@@ -28,7 +28,7 @@ menu = pygame.transform.scale(pygame.image.load("res/Menu.png"), (24 * 6, 96 * 6
 menu_rect = menu.get_rect()
 menu_rect.midright = (screen.get_width(), screen.get_height() / 2)
 
-shadow = 0
+shadow = "1"
 
 # ground = pygame.image.load("res/ground.png")
 
@@ -75,7 +75,7 @@ def equipblock(block_index):
 
 screen.fill("darkgray")
 my_font = pygame.font.SysFont('Comic Sans MS', 30)
-def render(shadow1):
+def render():
     global shadow
     t = my_font.render("level "+str(shadow),False,(0,0,0))
     screen.blit(t,(200,200))
@@ -119,7 +119,7 @@ async def main():
 
         if accumulator >= timePerFrame:  # UPDATE I RENDER
             update()
-            render(shadow)
+            render()
             accumulator -= timePerFrame
         await asyncio.sleep(0)
 
