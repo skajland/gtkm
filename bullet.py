@@ -117,10 +117,18 @@ class Bullet:
             elif self.dir < -0:
                 self.dir += 1
 '''
+    def fan(self,blocks):
+        for block in blocks:
+            if block.block_rect.width == 60:
+                if self.bullet_rect.x > block.block_rect.x:
+                    print("asfcda")
+
+
     def update(self,blocks, screen):
         self.bulletdir()
         self.ray(blocks,screen)
         self.rcb(blocks,screen)
+        self.fan(blocks)
 
     def render(self, screen):
         rot = pygame.transform.rotate(self.bullet_img,-self.dir+3)
