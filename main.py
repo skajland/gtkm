@@ -50,10 +50,6 @@ def update():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE:
-                    print("summon")
-                    usefull.all_bullets.append(Bullet(400, 800))
             placeblock.update(event)
             buttons.update(event)
         placeblock.blockhighlight()
@@ -92,18 +88,24 @@ def render():
             surf.fill((125, 60, 60, 50))  # Make Red
             screen.blit(surf, (0, 1*i*650))
 
+
         for bullet in usefull.all_bullets:
             bullet.render(screen)
 
         for block in usefull.blocks:
             block.render(screen)
+        surf = pygame.Surface((90, 912))
+
+        surf.fill((100, 100, 100, 50))  # Make Red
+        screen.blit(surf, (840, 0))
+
         waves.render(screen)
         player.render()
         placeblock.render(screen)
         screen.blit(menu, menu_rect)
         buttons.render()
         turret.render()
-        t = my_font.render("level " + str(shadow), False, (0, 0, 0))
+        t = my_font.render("level " + str(waves1), False, (0, 0, 0))
         screen.blit(t, (200, 200))
     elif usefull.game_state == "Menu":
         screens.Menu.render(screen, font)
