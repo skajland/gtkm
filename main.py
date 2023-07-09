@@ -1,26 +1,23 @@
 # GTKM GAME JAM SNOOPY AND SKAJLAND
 import pygame
-
-pygame.init()
-screen = pygame.display.set_mode((800, 800))  # Creates the window
-
 import asyncio
 import buttons
 import usefull
-from player import Player
+import player
 from bullet import Bullet
 from block import Block
-from turret import Turret
+import turret
 import placeblock
 import time
 import sys
 
-# screen = pygame.display.set_mode((800, 800))  # Creates the window
-turret1 = Turret((screen.get_width() / 2, screen.get_height()))
+pygame.init()
+screen = pygame.display.set_mode((912, 912))  # Creates the window
+buttons.setup_buttons()
+turret.setup()
+player.setup()
 
 all_bullets = [Bullet(200, 800)]
-player1 = Player((screen.get_width() / 2, 0), (96, 96))
-
 
 font = pygame.font.Font(None, 96)
 
@@ -30,10 +27,16 @@ def update():
         screen.fill("darkgray")
         for bullet in all_bullets:
             bullet.update(usefull.blocks, screen)
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    print("summon")
+                    all_bullets.append(Bullet(400, 800))
+
             placeblock.update(event)
             buttons.update(event)
 
@@ -67,11 +70,11 @@ def render():
         for block in usefull.blocks:
             block.render(screen)
 
-        player1.render(screen)
+        player.render()
         buttons.render()
         placeblock.render(screen)
 
-        turret1.render(screen)
+        turret.render()
     else:
         rendered_font = font.render("Bulletron 2023", 1, 'Black')
         font_rect = rendered_font.get_rect()

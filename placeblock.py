@@ -1,4 +1,7 @@
 import pygame
+
+import player
+import turret
 import usefull
 from block import Block
 
@@ -17,10 +20,14 @@ def blockhighlight():
         for block_checker in usefull.blocks:
             if not block_checker == usefull.blocks[-1]:
                 if block_checker.block_rect.colliderect(blockhighlite_rect):
-                    print("col")
                     can_be_placed = False
+                    break
                 else:
                     can_be_placed = True
+            if blockhighlite_rect.top >= player.player_rect.bottom + 100 and blockhighlite_rect.bottom + 100 <= turret.turret_rect.top:
+                can_be_placed = True
+            else:
+                can_be_placed = False
 
 
 def update(event):
@@ -32,12 +39,14 @@ def update(event):
 
 
 def render(screen):
+    global can_be_placed
     if endhighlight:
         surf = pygame.Surface((blockhighlite_rect.w, blockhighlite_rect.h)).convert_alpha()
+
         if can_be_placed:
             surf.fill((23, 100, 255, 50))
         else:
-            surf.fill((23, 100, 255, 50)) # Make Red
+            surf.fill((150, 50, 50, 50)) # Make Red
         screen.blit(surf, (blockhighlite_rect.x, blockhighlite_rect.y))
 
 def placeblock():

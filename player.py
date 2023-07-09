@@ -1,13 +1,19 @@
 import pygame
 
 
-class Player:
-    player_img = pygame.image.load("res/Dziad.png")
+player_img = pygame.image.load("res/Dziad.png")
 
-    def __init__(self, pos, scaler):
-        self.player_img = pygame.transform.scale(self.player_img, scaler)
-        self.player_rect = self.player_img.get_rect()
-        self.player_rect.centerx, self.player_rect.y = pos
 
-    def render(self, screen):
-        screen.blit(self.player_img, self.player_rect)
+player_img = pygame.transform.scale(player_img, (128, 128))
+player_rect = player_img.get_rect()
+screen = None
+
+
+def setup():
+    global screen
+    screen = pygame.display.get_surface()
+    player_rect.centerx, player_rect.y = (screen.get_width() / 2, 40)
+
+
+def render():
+    screen.blit(player_img, player_rect)

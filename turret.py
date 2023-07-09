@@ -1,17 +1,22 @@
 import pygame
 
 
-class Turret:
-    turret_img = pygame.transform.scale(pygame.image.load("res/Turret.png"), (128, 128))
+turret_img = pygame.transform.scale(pygame.image.load("res/Turret.png"), (128, 128))
 
-    def __init__(self, start_pos):
-        # start position
-        self.start_pos = start_pos
-        self.turret_rect = self.turret_img.get_rect()  # gets the rect of the image
-        self.turret_rect.centerx, self.turret_rect.bottom = start_pos
+screen = pygame.display.get_surface()
 
-    def shoot(self):
-        self.turret_rect.x -= 1
+turret_rect = turret_img.get_rect()  # gets the rect of the image
 
-    def render(self, screen):
-        screen.blit(self.turret_img, self.turret_rect)  # Renders the object
+
+def setup():
+    global screen
+    screen = pygame.display.get_surface()
+    turret_rect.centerx, turret_rect.bottom = (screen.get_width() / 2, screen.get_height())
+
+
+def shoot(self):
+    self.turret_rect.x -= 1
+
+
+def render():
+    screen.blit(turret_img, turret_rect)  # Renders the object
