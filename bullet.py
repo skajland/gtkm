@@ -46,6 +46,8 @@ class Bullet:
 
 
             for block in blocks:
+                if block.health == -999:
+                    continue
                 def b(o):
                     return block.block_rect.collidepoint(o)
 
@@ -81,6 +83,8 @@ class Bullet:
 
 
             for block in blocks:
+                if block.health == -999:
+                    continue
                 x, y = self.rotpos2(i, 20)
 
                 def b(o):

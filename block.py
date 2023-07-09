@@ -6,6 +6,7 @@ class Block:
     def __init__(self, img, scaler, health):
         self.block_img = pygame.transform.scale(pygame.image.load(img), scaler)
         self.block_rect = self.block_img.get_rect()
+        self.default_health = health
         self.health = health
 
 

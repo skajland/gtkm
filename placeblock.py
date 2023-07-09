@@ -37,6 +37,7 @@ def update(event):
         if endhighlight:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 endhighlight = not endhighlight
+                usefull.blocks[-1].health = usefull.blocks[-1].default_health
 
 
 def render(screen):
@@ -56,11 +57,13 @@ def placeblock():
 
 
 def equipblock(block_index):
-    global endhighlight, block
+    global endhighlight, block, block_to_add
     if not waves.coins - usefull.all_blocks[block_index[0]][3] < 0:
         if not endhighlight:
             waves.coins -= usefull.all_blocks[block_index[0]][3]
+            block_to_add = Block(usefull.all_blocks[block_index[0]][0], usefull.all_blocks[block_index[0]][1], usefull.all_blocks[block_index[0]][2])
             usefull.blocks.append(Block(usefull.all_blocks[block_index[0]][0], usefull.all_blocks[block_index[0]][1], usefull.all_blocks[block_index[0]][2]))
+            usefull.blocks[-1].health = -999
             block = usefull.blocks[-1]
         endhighlight = True
     return usefull.blocks

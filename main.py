@@ -15,7 +15,8 @@ import waves
 menu1 = pygame.mixer.music.load("res/menu_comp.wav")
 pygame.mixer.music.play(-1)
 pygame.init()
-
+pygame.display.set_caption("Bulletron")
+pygame.display.set_icon(pygame.image.load("res/Dziad.png"))
 screen = pygame.display.set_mode((912, 912))  # Creates the window
 buttons.setup_buttons()
 turret.setup()
@@ -41,6 +42,7 @@ def update():
             for i in range(usefull.waves1):
                 usefull.all_bullets.append(Bullet(400, 800))
             usefull.waves1 += 1
+            waves.coins += 50
 
         for bullet in usefull.all_bullets:
             bullet.update(usefull.blocks, screen)
@@ -53,8 +55,10 @@ def update():
             buttons.update(event)
         placeblock.blockhighlight()
         for block in usefull.blocks:
-            if block.health <= 0:
+            if -100 <= block.health <= 0:
                 usefull.blocks.remove(block)
+            if block.health == -999:
+                continue
             for bullet in usefull.all_bullets:
                 if bullet.bullet_rect.colliderect(block.block_rect):
                     block.health -= 25
