@@ -32,5 +32,4 @@ def play_again(state):
     waves.coins = waves.coins_default
     all_bullets.clear()
     blocks.clear()
-    print(state[0])
     game_state = state[0]

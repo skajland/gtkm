@@ -66,7 +66,6 @@ class Bullet:
         if not hitF:
             self.hashonged +=1
             return
-        print(random.randint(1,2))
         if random.randint(0,1) and not hitL:
             self.hashonged = 0
             self.dir += 1
