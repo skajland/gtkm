@@ -17,7 +17,7 @@ menu_button = None
 def setup_buttons():
     global start_button, exit_button, item_button1, item_button2, item_button3, screen, play_again, menu_button, item_button4, item_button5
     screen = pygame.display.get_surface()
-    play_again = Button("Play Again(bugged)", (screen.get_width() / 2, screen.get_height() / 2), 96, (130, 130, 130, 70),
+    play_again = Button("Play Again", (screen.get_width() / 2, screen.get_height() / 2), 96, (130, 130, 130, 70),
                           (75, 75, 75, 50), (160, 160, 160, 150), "Playing")
     start_button = Button("Play", (screen.get_width() / 2, screen.get_height() / 2), 96, (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150), "Playing")
     menu_button = Button("Menu", (screen.get_width() / 2, screen.get_height() / 2 + 96), 96, (130, 130, 130, 70),(75, 75, 75, 50), (160, 160, 160, 150), "Menu")
