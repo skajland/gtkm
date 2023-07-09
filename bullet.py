@@ -104,6 +104,11 @@ class Bullet:
 
         elif hitR:
             self.dir += 5
+        if self.bullet_rect.y < 200:
+            if self.bullet_rect.x > 400:
+                self.dir -= 1
+            if self.bullet_rect.x < 400:
+                self.dir += 1
 
         '''elif hitF :
             if self.dir > 0:
