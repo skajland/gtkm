@@ -11,8 +11,10 @@ import turret
 import placeblock
 import time
 import sys
-
+menu = pygame.mixer.music.load("res/menu_comp.wav")
+pygame.mixer.music.play(-1)
 pygame.init()
+
 screen = pygame.display.set_mode((912, 912))  # Creates the window
 buttons.setup_buttons()
 turret.setup()
@@ -21,6 +23,8 @@ player.setup()
 all_bullets = [Bullet(200, 800)]
 
 font = pygame.font.Font(None, 96)
+
+ground = pygame.image.load("res/ground.png")
 
 
 def update():
@@ -45,6 +49,7 @@ def update():
         for block in usefull.blocks:
             for bullet in all_bullets:
                 if bullet.bullet_rect.colliderect(block.block_rect):
+                    pygame.mixer.Sound("res/odbicie_comp.wav").play()
                     all_bullets.remove(bullet)
         for bullet in all_bullets:
             if bullet.bullet_rect.colliderect(player.player_rect):
@@ -63,6 +68,10 @@ def equipblock(block_index):
 
 
 def render():
+    for i in range(20):
+        for x in range(20):
+            screen.blit(ground,(32*i,32*x))
+
     if usefull.game_state == "Playing":
         for bullet in all_bullets:
             bullet.render(screen)

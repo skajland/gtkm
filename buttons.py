@@ -36,6 +36,9 @@ def start_screen_update(event):
 
 def getoutofstartmenu():
     usefull.game_state = "Playing"
+    gamemus = pygame.mixer.music.load("res/game_comp.wav")
+    pygame.mixer.music.play(-1)
+
 
 
 def playagain():
