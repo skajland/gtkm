@@ -1,5 +1,4 @@
 import pygame
-wave = 0
 coins_default = 50
 coins = coins_default
 font = pygame.font.Font(None, 64)
