@@ -57,9 +57,10 @@ def placeblock():
 
 def equipblock(block_index):
     global endhighlight, block
-    if not endhighlight:
-        waves.coins -= usefull.all_blocks[block_index[0]][3]
-        usefull.blocks.append(Block(usefull.all_blocks[block_index[0]][0], usefull.all_blocks[block_index[0]][1], usefull.all_blocks[block_index[0]][2]))
-        block = usefull.blocks[-1]
-    endhighlight = True
+    if not waves.coins - usefull.all_blocks[block_index[0]][3] < 0:
+        if not endhighlight:
+            waves.coins -= usefull.all_blocks[block_index[0]][3]
+            usefull.blocks.append(Block(usefull.all_blocks[block_index[0]][0], usefull.all_blocks[block_index[0]][1], usefull.all_blocks[block_index[0]][2]))
+            block = usefull.blocks[-1]
+        endhighlight = True
     return usefull.blocks
