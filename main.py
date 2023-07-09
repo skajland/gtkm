@@ -70,6 +70,7 @@ def equipblock(block_index):
 def render():
     #screen.blit(ground,(32,32))
 
+
     if usefull.game_state == "Playing":
         for bullet in all_bullets:
             bullet.render(screen)
