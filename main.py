@@ -98,7 +98,7 @@ def render():
         screen.blit(menu, menu_rect)
         buttons.render()
         turret.render()
-        t = my_font.render("wave " + str(shadow), False, (0, 0, 0))
+        t = my_font.render("wave " + str(waves1), False, (0, 0, 0))
         screen.blit(t, (10, 10))
     elif usefull.game_state == "Menu":
         screens.Menu.render(screen, font)
