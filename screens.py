@@ -17,7 +17,7 @@ class LosingScreen:
 
     @staticmethod
     def render(screen, font):
-        rendered_font = font.render("You Won", 1, 'Black')
+        rendered_font = font.render("You Lose", 1, 'Black')
         font_rect = rendered_font.get_rect()
         font_rect.center = (screen.get_width() / 2, screen.get_height() / 2 - 300)
         buttons.play_again.render(screen)
