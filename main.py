@@ -1,4 +1,5 @@
 # GTKM GAME JAM SNOOPY AND SKAJLAND
+import screens
 import pygame
 import asyncio
 import buttons
@@ -23,7 +24,7 @@ font = pygame.font.Font(None, 96)
 
 
 def update():
-    if not usefull.start_menu:
+    if usefull.game_state == "Playing":
         screen.fill("darkgray")
         for bullet in all_bullets:
             bullet.update(usefull.blocks, screen)
@@ -44,14 +45,11 @@ def update():
         for block in usefull.blocks:
             for bullet in all_bullets:
                 if bullet.bullet_rect.colliderect(block.block_rect):
-                    print("collision")
-    else:
-        screen.fill("darkgray")
-        for event in pygame.event.get():
-            buttons.start_screen_update(event)
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
+                    usefull.game_state = "Losing Screen"
+    elif usefull.game_state == "Menu":
+        screens.Menu.menu(screen)
+    elif usefull.game_state == "Losing Screen":
+        screens.LosingScreen.menu(screen)
 
 
 def equipblock(block_index):
@@ -62,7 +60,7 @@ def equipblock(block_index):
 
 
 def render():
-    if not usefull.start_menu:
+    if usefull.game_state == "Playing":
         for bullet in all_bullets:
             bullet.render(screen)
 
@@ -74,12 +72,10 @@ def render():
         placeblock.render(screen)
 
         turret.render()
-    else:
-        rendered_font = font.render("Bulletron 2023", 1, 'Black')
-        font_rect = rendered_font.get_rect()
-        font_rect.center = (screen.get_width() / 2, screen.get_height() / 2 - 300)
-        screen.blit(rendered_font, font_rect)
-        buttons.start_screen_render()
+    elif usefull.game_state == "Menu":
+        screens.Menu.render(screen, font)
+    elif usefull.game_state == "Losing Screen":
+        screens.LosingScreen.render(screen, font)
     pygame.display.update()
 
 

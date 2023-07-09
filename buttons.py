@@ -8,11 +8,14 @@ exit_button = None
 item_button1 = None
 item_button2 = None
 item_button3 = None
+play_again = None
 
 
 def setup_buttons():
-    global start_button, exit_button, item_button1, item_button2, item_button3, screen
+    global start_button, exit_button, item_button1, item_button2, item_button3, screen, play_again
     screen = pygame.display.get_surface()
+    play_again = Button("Play Again", (screen.get_width() / 2, screen.get_height() / 2), 96, (130, 130, 130, 70),
+                          (75, 75, 75, 50), (160, 160, 160, 150))
     start_button = Button("Play", (screen.get_width() / 2, screen.get_height() / 2), 96, (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150))
     exit_button = Button("Exit", (screen.get_width() / 2, screen.get_height() / 2 + 96), 96, (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150))
     item_button1 = Button(pygame.image.load("res/Brick.png"), (screen.get_width() - 30, 200), 64, (130, 130, 130, 70), (75, 75, 75, 50), (160, 160, 160, 150), 0)
@@ -32,8 +35,11 @@ def start_screen_update(event):
 
 
 def getoutofstartmenu():
-    global start_menu
-    usefull.start_menu = False
+    usefull.game_state = "Playing"
+
+
+def playagain():
+    usefull.game_state = "Playing"
 
 
 def render():
