@@ -6,7 +6,6 @@ import buttons
 import usefull
 import player
 from bullet import Bullet
-from block import Block
 import turret
 import placeblock
 import time
@@ -64,7 +63,7 @@ def update():
                 if bullet.bullet_rect.colliderect(block.block_rect):
                     block.health -= 25
                     pygame.mixer.Sound("res/odbicie_comp.wav").play()
-                    usefull.all_bullets.remove(bullet)
+                    bullet.dell()
         for bullet in usefull.all_bullets:
             if bullet.bullet_rect.colliderect(player.player_rect):
                 usefull.game_state = "Losing Screen"
