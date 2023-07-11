@@ -123,7 +123,7 @@ async def main():
         accumulator += currentTime - lastFrame
         lastFrame = currentTime
 
-        if accumulator >= timePerFrame:  # UPDATE I RENDER
+        while accumulator >= timePerFrame:  # UPDATE I RENDER
             update()
             render()
             accumulator -= timePerFrame
